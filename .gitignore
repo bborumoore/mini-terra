@@ -58,3 +58,10 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+
+# Headless specifications and local test output
+**/bin/
+**/obj/
+TestResults/
+# Keep the intentionally authored headless project (override Unity wildcard).
+!Tests/Headless/Terra.Specs.csproj

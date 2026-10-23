@@ -1,0 +1,20 @@
+name: Gameplay specifications
+on:
+  push:
+    branches: [main, 'feat/**']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  pure-gameplay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Run pure C# gameplay specifications (not Unity tests)
+        run: dotnet run --project Tests/Headless/Terra.Specs.csproj
+      - name: Validate source packaging
+        run: python3 tools/validate_project.py
